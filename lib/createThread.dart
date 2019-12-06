@@ -2,18 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // for cloud firestore
 
 class CreateThread extends StatefulWidget {
-  // final title;
-  // CreateThread({
-  //   @required this.title
-  // });
 
    @override
   _CreateThread createState() => _CreateThread();
 }
 
 class _CreateThread extends State<CreateThread> {
-  String thredTitle;
-  String thredDescription;
+  String _thredTitle;
+  String _thredDescription;
 
   // instance of firestore
  final threadReference = Firestore.instance.collection('Thread');
@@ -26,13 +22,15 @@ class _CreateThread extends State<CreateThread> {
     }
   }
 
-  void createThread(){
+  void _createThread(){
     print('hello createthread');
     threadReference.document().setData({
-      'title': thredTitle,
-      'description': thredDescription,
+      'title': _thredTitle,
+      'description': _thredDescription,
       'bool': null
     });
+    // back screan
+    Navigator.pop(context);
   }
 
   @override
@@ -56,11 +54,11 @@ class _CreateThread extends State<CreateThread> {
             onChanged: (text) {
               if (text.length > 0) {
                 setState(() {
-                  this.thredTitle = text;
+                  this._thredTitle = text;
               });
-            } else {
+              } else {
                 setState(() {
-                  this.thredTitle = "入力してください。";
+                  this._thredTitle = "入力してください。";
               });
               }
             },
@@ -77,11 +75,11 @@ class _CreateThread extends State<CreateThread> {
             onChanged: (text) {
               if (text.length > 0) {
                 setState(() {
-                  this.thredDescription = text;
+                  this._thredDescription = text;
               });
             } else {
                 setState(() {
-                  this.thredDescription = "入力してください。";
+                  this._thredDescription = "入力してください。";
               });
               }
             },
@@ -96,9 +94,8 @@ class _CreateThread extends State<CreateThread> {
           ),
           RaisedButton(
             child: Text('Create Thread !'),
-              onPressed: _whetherDisabledReturnsBool(this.thredTitle, this.thredDescription) 
-                ? () => createThread() : null
-                // ? () => add.add(_title, _description, _mydatetime) : null
+              onPressed: _whetherDisabledReturnsBool(this._thredTitle, this._thredDescription) 
+                ? () => _createThread() : null
           ),
         ],
       )
