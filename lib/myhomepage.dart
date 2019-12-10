@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_scheduler/cloudFunctionPractice.dart';
 
 import 'createThread.dart';
 import 'makeThreadList.dart';
 import 'listViewPractice.dart';
 import 'listTilePractice.dart';
 import 'stackPractice.dart';
+import 'cloudFunctionPractice.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -58,11 +60,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     child:  MaterialApp(home: ListTilePractice()),
                 ),
             ),
+            // Offstage(
+            //     offstage: _selectedBottomIndex != 2,
+            //     child: TickerMode(
+            //         enabled: _selectedBottomIndex == 2,
+            //         child: StackPractice(),
+            //     ),
+            // ),
             Offstage(
                 offstage: _selectedBottomIndex != 2,
                 child: TickerMode(
                     enabled: _selectedBottomIndex == 2,
-                    child: StackPractice(),
+                    child: CloudFunctionPractice(),
                 ),
             ),
         ],
@@ -112,6 +121,10 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(Icons.school),
               title: Text('School'),
           ),
+          // BottomNavigationBarItem(
+          //     icon: Icon(Icons.watch),
+          //     title: Text('Sample'),
+          // ),
         ],
         currentIndex: _selectedBottomIndex,
         selectedItemColor: Colors.amber[800],

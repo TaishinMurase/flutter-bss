@@ -23,9 +23,11 @@ dependencies:
   # for authentification
   firebase_database: ^1.0.3
   google_sign_in: ^3.0.4
-  
   firebase_auth: ^0.5.19
+  # for cloud firestore
   cloud_firestore: ^0.7.0
+  # for cloud function
+  cloud_functions: ^0.0.5
   flutter_datetime_picker: ^1.2.1
   flutter_localizations:
     sdk: flutter
