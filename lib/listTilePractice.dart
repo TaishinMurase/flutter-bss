@@ -7,6 +7,7 @@ class ListTilePractice extends StatelessWidget {
 
   // この辺のリスト表示はセットとして覚えとくとよい
   // ListView.builder系ははプロパティにbuilderを持つ
+  // 特に意味はないけれど練習として作った
   @override
   Widget build(BuildContext context) {
     return Scaffold(

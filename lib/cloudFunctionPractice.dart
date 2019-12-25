@@ -11,12 +11,7 @@ class _CloudFunctionPractice extends State<CloudFunctionPractice> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Cloud Functions example app'),
-        ),
-        body: Center(
+    return Center(
           child: Container(
             margin: const EdgeInsets.only(top: 32.0, left: 16.0, right: 16.0),
             child: Column(
@@ -26,7 +21,7 @@ class _CloudFunctionPractice extends State<CloudFunctionPractice> {
                   onPressed: () async {
                     try {
                       final dynamic resp = await CloudFunctions.instance.call(
-                        functionName: 'addMessage',
+                        functionName: 'create',
                         parameters: <String, String>{
                           'text': 'aaaa',
                         },
@@ -50,8 +45,6 @@ class _CloudFunctionPractice extends State<CloudFunctionPractice> {
               ],
             ),
           ),
-        ),
-      ),
     );
   }
 }

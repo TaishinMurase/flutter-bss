@@ -6,7 +6,8 @@ import 'pageBss.dart';
 class MakeThreadList extends StatelessWidget {
   // StreamBuilderは参照しているCloud上のデータを監視して変更があった場合、画面に反映
   // ex) エミュレータを開く ➔ firebase上でデータ更新すると自動で画面更新される
-
+  // 一覧を表示する
+  // Cloud Sql使うからあんま参考にならないかも
   @override
   Widget build(BuildContext context) {
     print('build streambuilder');

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// リストの個別ページの表示
 class PageBss extends StatefulWidget{
   final String threadTitle;
   final String threadFirstDescription;

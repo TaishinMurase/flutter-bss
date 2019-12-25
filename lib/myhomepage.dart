@@ -6,7 +6,6 @@ import 'createThread.dart';
 import 'makeThreadList.dart';
 import 'listViewPractice.dart';
 import 'listTilePractice.dart';
-import 'stackPractice.dart';
 import 'cloudFunctionPractice.dart';
 
 
@@ -19,7 +18,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // for bottom navigator 別クラスから参照されないフィールドや関数はプライベート(_)にする
+  // for bottom navigator 
+  // 別クラスから参照されないフィールドや関数はプライベート(_)にする
   int _selectedBottomIndex = 0;
 
   void _onItemTapped(int index){
@@ -32,55 +32,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppbar(),
-      // pagecontroler使ってボディをindexに応じて動的に変更すれば遷移できそう！？
       body: _buildBody(), 
       bottomNavigationBar: _buildBottomNavigator(), 
     );
   }
-
-  // 画面遷移のため
-  // 画面から非表示になったWidgetは解放されてしまうので、Stackで画面を重ねておく。Stackを使うことによって、画像の上に画像を重ねたりもできる
-  // また、indexとOffstageによって非アクティブにしたり、
-  // TickerModeでアニメーションを停止したりできる。
-  // 以上より、Widgetはツリーに残っているのでStateが保たれる
-  Widget _buildBody(){
-    return Stack(
-        children: <Widget>[
-            Offstage(
-                offstage: _selectedBottomIndex != 0,
-                child: TickerMode(
-                    enabled: _selectedBottomIndex == 0,
-                    child: MaterialApp(home: MakeThreadList()),
-                ),
-            ),
-            Offstage(
-                offstage: _selectedBottomIndex != 1,
-                child: TickerMode(
-                    enabled: _selectedBottomIndex == 1,
-                    child:  MaterialApp(home: ListTilePractice()),
-                ),
-            ),
-            // Offstage(
-            //     offstage: _selectedBottomIndex != 2,
-            //     child: TickerMode(
-            //         enabled: _selectedBottomIndex == 2,
-            //         child: StackPractice(),
-            //     ),
-            // ),
-            Offstage(
-                offstage: _selectedBottomIndex != 2,
-                child: TickerMode(
-                    enabled: _selectedBottomIndex == 2,
-                    child: CloudFunctionPractice(),
-                ),
-            ),
-        ],
-    );
-  }
-
+  // AppBarの作製
   Widget _buildAppbar(){
     return AppBar(
         title: Text(widget.title),
+        // CreateThreadとListの表示(AppBarの右上)
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.poll),
@@ -105,7 +65,40 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       );
   }
-
+  // 画面遷移のため
+  // 画面から非表示になったWidgetは解放されてしまうので、Stackで画面を重ねておく。Stackを使うことによって、画像の上に画像を重ねたりもできる
+  // また、indexとOffstageによって非アクティブにしたり、
+  // TickerModeでアニメーションを停止したりできる。
+  // 以上より、Widgetはツリーに残っているのでStateが保たれる
+  Widget _buildBody(){
+    return Stack(
+        children: <Widget>[
+            Offstage(
+                offstage: _selectedBottomIndex != 0,
+                child: TickerMode(
+                    enabled: _selectedBottomIndex == 0,
+                    child: MaterialApp(home: MakeThreadList()),
+                ),
+            ),
+            Offstage(
+                offstage: _selectedBottomIndex != 1,
+                child: TickerMode(
+                    enabled: _selectedBottomIndex == 1,
+                    child:  MaterialApp(home: ListTilePractice()),
+                ),
+            ),
+            Offstage(
+                offstage: _selectedBottomIndex != 2,
+                child: TickerMode(
+                    enabled: _selectedBottomIndex == 2,
+                    child: CloudFunctionPractice(),
+                ),
+            ),
+        ],
+    );
+  }
+  // ボトムナビゲータ
+  // アイコンのタップ → _selectedBottomIndexの変更 → stack, offstage, TickerModeによって保持したまま画面遷移
   Widget _buildBottomNavigator(){
     return BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -121,10 +114,6 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(Icons.school),
               title: Text('School'),
           ),
-          // BottomNavigationBarItem(
-          //     icon: Icon(Icons.watch),
-          //     title: Text('Sample'),
-          // ),
         ],
         currentIndex: _selectedBottomIndex,
         selectedItemColor: Colors.amber[800],

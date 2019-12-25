@@ -7,6 +7,8 @@ class ListViewPractice extends StatelessWidget {
 
   final listItem = ["one", "two", "three", "four", "five", "six", "seven"];
 
+  // 意味はない
+  // 練習と画面遷移のサンプルとして
   @override
   Widget build(BuildContext context){
     print('build');

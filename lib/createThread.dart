@@ -12,8 +12,9 @@ class _CreateThread extends State<CreateThread> {
   String _thredDescription;
 
   // instance of firestore
- final threadReference = Firestore.instance.collection('Thread');
-
+  final threadReference = Firestore.instance.collection('Thread');
+  
+  // wherether tittle and description is Null or not.
   bool _whetherDisabledReturnsBool(String title, String description) {
     if(title != null && description != null){
       return true;
@@ -21,7 +22,8 @@ class _CreateThread extends State<CreateThread> {
       return false;
     }
   }
-
+  
+  // firestoreに保存
   void _createThread(){
     print('hello createthread');
     threadReference.document().setData({
@@ -29,7 +31,7 @@ class _CreateThread extends State<CreateThread> {
       'description': _thredDescription,
       'bool': null
     });
-    // back screan
+    // 投稿と同時にback screanする
     Navigator.pop(context);
   }
 
@@ -87,8 +89,6 @@ class _CreateThread extends State<CreateThread> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0)
           ),
-          // Text(thredTitle),
-          // Text(thredDescription),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0)
           ),
